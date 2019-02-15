@@ -1,0 +1,19 @@
+如果想要使用离线rust编译环境，crate 库可以通过下面命令生成。
+
+1. cargo new playground --bin
+
+2. 修改Cargo.toml, 用这个文件[https://github.com/integer32llc/rust-playground/blob/master/compiler/base/Cargo.toml]的内容替换它。
+
+3. 安装 cargo-local-registry
+cargo install cargo-local-registry
+
+4. 使用下面命令 生成本地库
+cargo local-registry --sync path/to/Cargo.lock /path/to/local_registry
+
+5. 在.cargo 新建config 文件，并修改内容如下：
+
+[source.offline]
+local-registry = "/path/to/local_registry/"
+
+[source.crates-io]
+replace-with = "offline"
